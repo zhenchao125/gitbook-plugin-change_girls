@@ -27,10 +27,19 @@ gitbook.events.bind("page.change", function (){
     $("<div>").addClass("girls").prependTo($(".book-body"));
     $(".girls").css("backgroundImage", "url(" + imgUrls[index++] + ")");
     id = setInterval(function (){
-        $(".girls").css("backgroundImage", "url(" + imgUrls[index++] + ")");
-        if (index == imgUrls.length) index = 0;
+        index = randomInt(0, imgUrls[imgUrls.length - 1]);
+        $(".girls").css("backgroundImage", "url(" + imgUrls[index] + ")");
     }, time * 1000);
 })
+
+/**
+    作者:李振超      2018年11月20 17:03:25
+    返回随机的 [from, to] 之间的整数(包括from，也包括to)
+*/
+function randomInt(from, to) {
+    return parseInt(Math.random() * (to - from + 1) + from);
+}
+
 
 /*require(['gitbook', 'jQuery'], function (gitbook, $){
     var options;
