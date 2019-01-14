@@ -5,9 +5,8 @@ var time;
 gitbook.events.bind('start', function (e, config){
     // Save config data
     options = config['change_girls'] || {};
-    imgUrls = options.urls || ["http://o7cqr8cfk.bkt.clouddn.com/18-3-4/62171757.jpg-atguiguImg"];
+    imgUrls = options.urls;
     time = options.time || 5;
-    imgUrls.unshift("http://o7cqr8cfk.bkt.clouddn.com/18-3-4/62171757.jpg-atguiguImg","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525951838985&di=95a308c536601f24dda43ae06712a9f2&imgtype=0&src=http%3A%2F%2Fpic27.photophoto.cn%2F20130625%2F0036036874581015_b.jpg","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525951838983&di=8ebb8403ed9018c65906af6e72a1ef57&imgtype=0&src=http%3A%2F%2Fpic31.nipic.com%2F20130728%2F7447430_150434625000_2.jpg");
     imgUrls.push("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525951838982&di=7b7634a3a210401a4808479e7214839e&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2F86%2Fa0%2Fba%2F86a0badf557c0df8754d71de7362aa7c.jpg",
 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525951838982&di=c6b3dacf6e2eff234eb5dfaba798f577&imgtype=0&src=http%3A%2F%2Ff7.topitme.com%2F7%2F27%2Fba%2F1125891165655ba277o.jpg",
 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525951838982&di=3b4ac0a0338a0203853fe18fff4e1bf9&imgtype=0&src=http%3A%2F%2Fuploadfile.bizhizu.cn%2F2014%2F0617%2F20140617023137471.jpg",
@@ -22,42 +21,17 @@ gitbook.events.bind('start', function (e, config){
 });
 var id;
 gitbook.events.bind("page.change", function (){
-    var index = 0;
+    var index = randomInt(0, imgUrls.length - 1);
     clearInterval(id);
     $("<div>").addClass("girls").prependTo($(".book-body"));
-    $(".girls").css("backgroundImage", "url(" + imgUrls[index++] + ")");
+
+    $(".girls").css("backgroundImage", "url(" + imgUrls[index] + ")");
     id = setInterval(function (){
-        index = randomInt(0, imgUrls[imgUrls.length - 1]);
+        index = randomInt(0, imgUrls.length - 1);
         $(".girls").css("backgroundImage", "url(" + imgUrls[index] + ")");
     }, time * 1000);
-})
+});
 
-/**
-    作者:李振超      2018年11月20 17:03:25
-    返回随机的 [from, to] 之间的整数(包括from，也包括to)
-*/
 function randomInt(from, to) {
     return parseInt(Math.random() * (to - from + 1) + from);
 }
-
-
-/*require(['gitbook', 'jQuery'], function (gitbook, $){
-    var options;
-    var imgUrls = ["http://o7cqr8cfk.bkt.clouddn.com/18-3-4/62171757.jpg-atguiguImg"];
-    var time = 5;
-    gitbook.events.bind('start', function (e, config){
-        options = config['change_girls'];
-        $("<div>").addClass("girls").prependTo($(".book-body"));
-        options && options.urls && (imgUrls = options.urls);
-        options.time && (time = options.time);
-        var index = 0;
-        $(".girls").css("backgroundImage", "url(" + imgUrls[index++] + ")");
-        setInterval(function (){
-            $(".girls").css("backgroundImage", "url(" + imgUrls[index++] + ")");
-            if (index == imgUrls.length) index = 0;
-        }, time * 1000);
-    });
-
-});*/
-
-
