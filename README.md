@@ -10,7 +10,7 @@ This plugin add backgroundImg,  and auto change these imgs.
 "pluginsConfig": {
     
     "change_girls" : {
-        time : 5,
+        "time" : 5,
         "urls" : [
             "girlUrl1", "girlUrl2",...
         ]

@@ -1,7 +1,7 @@
 {
   "name": "gitbook-plugin-change_girls",
-  "version": "2.2.0",
-  "author": "李振超",
+  "version": "2.2.1",
+  "author": "lizhenchao",
   "dependencies": {},
   "engines": {
     "gitbook": ">1.x.x"
